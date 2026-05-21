@@ -1,6 +1,12 @@
 package com.anantaya.happyghastpro;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionResult;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,17 +14,37 @@ import org.slf4j.LoggerFactory;
 public class HappyGhastPro implements ModInitializer {
 	public static final String MOD_ID = "happy-ghast-pro";
 
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+		ModBlocks.registerModBlocks();
 
-		LOGGER.info("Hello Fabric world!");
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS)
+				.register(output -> output.accept(ModBlocks.GHAST_ANCHOR_ITEM));
+
+		UseBlockCallback.EVENT.register((player, level, hand, hitResult) -> {
+			if (level.isClientSide()) {
+				return InteractionResult.PASS;
+			}
+
+			if (!player.isShiftKeyDown() && !player.isSecondaryUseActive()) {
+				return InteractionResult.PASS;
+			}
+
+			BlockPos pos = hitResult.getBlockPos();
+
+			if (!level.getBlockState(pos).is(ModBlocks.GHAST_ANCHOR)) {
+				return InteractionResult.PASS;
+			}
+
+			if (level instanceof ServerLevel serverLevel) {
+				return GhastAnchorBlock.unbindFromAnchor(serverLevel, pos, player);
+			}
+
+			return InteractionResult.PASS;
+		});
+
+		LOGGER.info("Happy Ghast Pro loaded");
 	}
 }

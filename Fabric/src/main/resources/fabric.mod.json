@@ -3,15 +3,16 @@
 	"id": "happy-ghast-pro",
 	"version": "${version}",
 	"name": "Happy Ghast Pro",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Happy Ghast Pro improves Happy Ghasts with a Ghast Whistle, Ghast Anchor, saddlebag inventory, and a vanilla-friendly snowball speed boost for smoother travel.!",
 	"authors": [
-		"Me!"
+		"GameMech007!"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/project/happy-ghast-pro",
+		"sources": "https://github.com/gamemech007/Happy-Ghast-Pro",
+		"Issues": "https://github.com/gamemech007/Happy-Ghast-Pro/issues"
 	},
-	"license": "CC0-1.0",
+	"license": "Apache-2.0",
 	"icon": "assets/happy-ghast-pro/icon.png",
 	"environment": "*",
 	"entrypoints": {
