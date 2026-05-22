@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OCO",
+    "GTG",
+    "OCO"
+  ],
+  "key": {
+    "O": "minecraft:obsidian",
+    "C": "minecraft:crying_obsidian",
+    "G": "minecraft:ghast_tear",
+    "T": "minecraft:target"
+  },
+  "result": {
+    "id": "happy-ghast-pro:ghast_anchor",
+    "count": 1
+  }
+}

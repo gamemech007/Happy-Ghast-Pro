@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "com.anantaya.happyghastpro.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "InstrumentItemMixin",
+    "HappyGhastMixin"
+  ],
+
+
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
